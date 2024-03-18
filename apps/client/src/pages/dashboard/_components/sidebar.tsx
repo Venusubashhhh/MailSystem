@@ -82,14 +82,27 @@ export const Sidebar = ({ setOpen }: SidebarProps) => {
 
   const sidebarItems: SidebarItem[] = [
     {
-      path: "/dashboard/resumes",
-      name: t`Resumes`,
+      path: "/dashboard/inbox",
+      name: t`Inbox`,
       shortcut: "⇧R",
       icon: <ReadCvLogo />,
     },
     {
+      path: "/dashboard/compose",
+      name: t`Compose`,
+      shortcut: "⇧R",
+      icon: <ReadCvLogo />,
+    },
+    {
+      path: "/dashboard/sent",
+      name: t`Sent`,
+      shortcut: "⇧R",
+      icon: <ReadCvLogo />,
+    },
+
+    {
       path: "/dashboard/settings",
-      name: t`Settings`,
+      name: t`Open AI Settings`,
       shortcut: "⇧S",
       icon: <FadersHorizontal />,
     },

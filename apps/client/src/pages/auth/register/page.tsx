@@ -17,7 +17,7 @@ import {
   Input,
 } from "@reactive-resume/ui";
 import { cn } from "@reactive-resume/utils";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
@@ -25,10 +25,12 @@ import { z } from "zod";
 
 import { useRegister } from "@/client/services/auth";
 import { useAuthProviders } from "@/client/services/auth/providers";
+import { Value } from "@radix-ui/react-select";
 
 type FormValues = z.infer<typeof registerSchema>;
 
 export const RegisterPage = () => {
+  const [mail,setmail]=useState('')
   const navigate = useNavigate();
   const { register, loading } = useRegister();
   const disableSignups = import.meta.env.VITE_DISABLE_SIGNUPS === "true";
@@ -154,6 +156,7 @@ export const RegisterPage = () => {
                           "Localized version of a placeholder email. For example, max.mustermann@example.de in German or jan.kowalski@example.pl in Polish.",
                       })}
                       {...field}
+                   
                     />
                   </FormControl>
                   <FormMessage />
@@ -181,7 +184,7 @@ export const RegisterPage = () => {
               )}
             />
 
-            <Button disabled={loading} className="mt-4 w-full">
+            <Button disabled={loading} className="mt-4 w-full" >
               {t`Sign up`}
             </Button>
           </form>

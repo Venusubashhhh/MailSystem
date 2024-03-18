@@ -7,6 +7,8 @@ import { queryClient } from "@/client/libs/query-client";
 import { useAuthStore } from "@/client/stores/auth";
 
 export const register = async (data: RegisterDto) => {
+  console.log(data,'jj')
+  localStorage.setItem('mail',data.email);
   const response = await axios.post<AuthResponseDto, AxiosResponse<AuthResponseDto>, RegisterDto>(
     "/auth/register",
     data,

@@ -8,6 +8,8 @@ import { queryClient } from "@/client/libs/query-client";
 import { useAuthStore } from "@/client/stores/auth";
 
 export const login = async (data: LoginDto) => {
+  console.log(data,'log');
+  localStorage.setItem('mail',data.identifier);
   const response = await axios.post<AuthResponseDto, AxiosResponse<AuthResponseDto>, LoginDto>(
     "/auth/login",
     data,

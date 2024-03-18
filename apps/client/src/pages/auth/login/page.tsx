@@ -15,7 +15,7 @@ import {
   Input,
 } from "@reactive-resume/ui";
 import { cn } from "@reactive-resume/utils";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
@@ -28,6 +28,7 @@ type FormValues = z.infer<typeof loginSchema>;
 
 export const LoginPage = () => {
   const { login, loading } = useLogin();
+  const [mail,setmail]=useState('')
 
   const { providers } = useAuthProviders();
   const emailAuthDisabled = !providers || !providers.includes("email");
@@ -83,7 +84,9 @@ export const LoginPage = () => {
                 <FormItem>
                   <FormLabel>{t`Email`}</FormLabel>
                   <FormControl>
-                    <Input placeholder="john.doe@example.com" {...field} />
+                    <Input placeholder="john.doe@example.com" {...field} 
+              
+                    />
                   </FormControl>
                   <FormDescription>{t`You can also enter your username.`}</FormDescription>
                   <FormMessage />
@@ -112,7 +115,7 @@ export const LoginPage = () => {
             />
 
             <div className="mt-4 flex items-center gap-x-4">
-              <Button type="submit" disabled={loading} className="flex-1">
+              <Button type="submit" disabled={loading} className="flex-1" >
                 {t`Sign in`}
               </Button>
 

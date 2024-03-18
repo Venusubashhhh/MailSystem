@@ -1,3 +1,4 @@
+
 import { createBrowserRouter, createRoutesFromElements, Navigate, Route } from "react-router-dom";
 
 import { BackupOtpPage } from "../pages/auth/backup-otp/page";
@@ -8,18 +9,16 @@ import { RegisterPage } from "../pages/auth/register/page";
 import { ResetPasswordPage } from "../pages/auth/reset-password/page";
 import { VerifyEmailPage } from "../pages/auth/verify-email/page";
 import { VerifyOtpPage } from "../pages/auth/verify-otp/page";
-import { BuilderLayout } from "../pages/builder/layout";
-import { BuilderPage } from "../pages/builder/page";
-import { builderLoader } from "../pages/builder/page";
 import { DashboardLayout } from "../pages/dashboard/layout";
-import { ResumesPage } from "../pages/dashboard/resumes/page";
 import { SettingsPage } from "../pages/dashboard/settings/page";
 import { HomeLayout } from "../pages/home/layout";
 import { HomePage } from "../pages/home/page";
-import { publicLoader, PublicResumePage } from "../pages/public/page";
 import { Providers } from "../providers";
 import { AuthGuard } from "./guards/auth";
 import { GuestGuard } from "./guards/guest";
+import Inbox from "../pages/dashboard/Inbox";
+import Compose from "../pages/dashboard/Compose";
+import Sent from "../pages/dashboard/Sent";
 import { authLoader } from "./loaders/auth";
 
 export const routes = createRoutesFromElements(
@@ -62,28 +61,19 @@ export const routes = createRoutesFromElements(
     <Route path="dashboard">
       <Route element={<AuthGuard />}>
         <Route element={<DashboardLayout />}>
-          <Route path="resumes" element={<ResumesPage />} />
           <Route path="settings" element={<SettingsPage />} />
 
-          <Route index element={<Navigate to="/dashboard/resumes" replace />} />
+<Route path="inbox" element={<Inbox />} />
+<Route path="sent" element={<Sent/>} />
+<Route path="compose" element={<Compose />} />
+          <Route index element={<Navigate to="/dashboard/inbox" replace />} />
         </Route>
       </Route>
     </Route>
 
-    <Route path="builder">
-      <Route element={<AuthGuard />}>
-        <Route element={<BuilderLayout />}>
-          <Route path=":id" loader={builderLoader} element={<BuilderPage />} />
+  
 
-          <Route index element={<Navigate to="/dashboard/resumes" replace />} />
-        </Route>
-      </Route>
-    </Route>
-
-    {/* Public Routes */}
-    <Route path=":username">
-      <Route path=":slug" loader={publicLoader} element={<PublicResumePage />} />
-    </Route>
+  
   </Route>,
 );
 
